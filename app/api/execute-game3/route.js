@@ -6,7 +6,7 @@ export async function GET() {
     try {
         console.log('hi');
         // Path to your Python script
-        const scriptPath = './scripts/script2.py'; // Adjust path if necessary
+        const scriptPath = './scripts/script3.py'; // Adjust path if necessary
 
         return new Promise((resolve, ) => {
             exec(`python3 ${scriptPath}`, (error, stdout, stderr) => {

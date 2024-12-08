@@ -33,8 +33,8 @@ def load_images(folder_path):
             images.append((img, filename))  # Store both image and its filename
     return images
 
-biodegradable_images = load_images("biodegradable")
-non_biodegradable_images = load_images("non-biodegradable")
+biodegradable_images = load_images("scripts/biodegradable")
+non_biodegradable_images = load_images("scripts/non-biodegradable")
 
 class Player:
     def __init__(self):

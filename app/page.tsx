@@ -66,7 +66,7 @@ export default function DashboardPage() {
     const handleExecuteGame2 = async () => {
       setIsLoading2(true);
       try {
-          const response = await fetch('/api/execute-game');
+          const response = await fetch('/api/execute-game2');
           const result = await response.json();
 
           if (!response.ok) {
@@ -85,7 +85,7 @@ export default function DashboardPage() {
   const handleExecuteGame3 = async () => {
     setIsLoading3(true);
     try {
-        const response = await fetch('/api/execute-game');
+        const response = await fetch('/api/execute-game3');
         const result = await response.json();
 
         if (!response.ok) {
