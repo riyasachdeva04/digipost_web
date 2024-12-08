@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Trophy, Users, Zap } from 'lucide-react'
 import { Appbar } from "./components/Appbar"
+// import { error } from "console"
 
 const energyData = [
   { postOffice: "Mumbai GPO", consumption: 1200 },
@@ -39,7 +40,67 @@ const leaderboardData = [
 export default function DashboardPage() {
   const [energyReading, setEnergyReading] = useState("")
   const [wasteAmount, setWasteAmount] = useState("")
+  const [isLoading1, setIsLoading1] = useState(false);
+  const [isLoading2, setIsLoading2] = useState(false);
+  const [isLoading3, setIsLoading3] = useState(false);
 
+    const handleExecuteGame1 = async () => {
+        setIsLoading1(true);
+        try {
+            const response = await fetch('/api/execute-game1');
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || 'Script execution failed');
+            }
+
+            console.log('Script Output:', result.output);
+            alert('Script executed successfully: ' + result.output);
+        } catch (err) {
+            console.error('Execution error:', err);
+            alert('Error: ' );
+        } finally {
+            setIsLoading1(false);
+        }
+    };
+    const handleExecuteGame2 = async () => {
+      setIsLoading2(true);
+      try {
+          const response = await fetch('/api/execute-game');
+          const result = await response.json();
+
+          if (!response.ok) {
+              throw new Error(result.error || 'Script execution failed');
+          }
+
+          console.log('Script Output:', result.output);
+          alert('Script executed successfully: ' + result.output);
+      } catch (err) {
+          console.error('Execution error:', err);
+          alert('Error: ' );
+      } finally {
+          setIsLoading2(false);
+      }
+  };
+  const handleExecuteGame3 = async () => {
+    setIsLoading3(true);
+    try {
+        const response = await fetch('/api/execute-game');
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.error || 'Script execution failed');
+        }
+
+        console.log('Script Output:', result.output);
+        alert('Script executed successfully: ' + result.output);
+    } catch (err) {
+        console.error('Execution error:', err);
+        alert('Error: ' );
+    } finally {
+        setIsLoading3(false);
+    }
+};
   return (
     <div className="container mx-auto py-10">
         <Appbar></Appbar>
@@ -60,6 +121,7 @@ export default function DashboardPage() {
           <TabsTrigger value="data-entry">Data Entry</TabsTrigger>
           <TabsTrigger value="reports">Reports</TabsTrigger>
           <TabsTrigger value="leaderboard">Leaderboard</TabsTrigger>
+          <TabsTrigger value="game">Games</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="space-y-4">
@@ -273,6 +335,38 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
         </TabsContent>
+
+        <TabsContent value="game">
+        <Card>
+          <CardHeader>
+            <CardTitle>Learning Games</CardTitle>
+            <CardDescription>
+            Play fun games and earn points
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+            <Button 
+              onClick={handleExecuteGame1} 
+              disabled={isLoading1}>
+              {isLoading1 ? 'Executing...' : 'Game 1'}
+          </Button>
+            <Button 
+              onClick={handleExecuteGame2} 
+              disabled={isLoading2}>
+              {isLoading2 ? 'Executing...' : 'Game 2'}
+          </Button>
+            <Button 
+              onClick={handleExecuteGame3} 
+              disabled={isLoading3}>
+              {isLoading3 ? 'Executing...' : 'Game 3'}
+          </Button>
+          </div>
+          </CardContent>
+          </Card>
+        </TabsContent>
+          
+
       </Tabs>
     </div>
   )
