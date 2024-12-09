@@ -36,11 +36,14 @@ def load_images(folder_path):
 biodegradable_images = load_images("scripts/biodegradable")
 non_biodegradable_images = load_images("scripts/non-biodegradable")
 
+# Load player image
+player_image = pygame.image.load("scripts/dustbin.jpg")
+player_image = pygame.transform.scale(player_image, (PLAYER_WIDTH, PLAYER_HEIGHT))
+
 class Player:
     def __init__(self):
-        self.rect = pygame.Rect(SCREEN_WIDTH // 2 - PLAYER_WIDTH // 2, 
-                                SCREEN_HEIGHT - PLAYER_HEIGHT - 10, 
-                                PLAYER_WIDTH, PLAYER_HEIGHT)
+        self.image = player_image
+        self.rect = self.image.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT - PLAYER_HEIGHT // 2 - 10))
         self.score = 0
         self.lives = 3
 
@@ -53,7 +56,7 @@ class Player:
         self.rect.y = max(0, min(self.rect.y, SCREEN_HEIGHT - self.rect.height))
     
     def draw(self):
-        pygame.draw.rect(SCREEN, (0, 255, 0), self.rect)
+        SCREEN.blit(self.image, self.rect)
 
 class Item:
     def __init__(self, is_biodegradable):
