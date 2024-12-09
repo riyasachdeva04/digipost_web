@@ -39,8 +39,57 @@ const leaderboardData = [
   { name: "Gujarat Circle", score: 88 },
   { name: "Tamil Nadu Circle", score: 87 },
 ]
+interface Node {
+  name: string
+  count: number
+  vehicles: {
+    [key: string]: number
+  }
+}
 
+const nodesData: Node[] = [
+  { name: "Hyderabad-South", count: 748, vehicles: { Truck: 166, Plane: 150, Van: 136, Bike: 160, Train: 136 } },
+  { name: "Kolkata-South", count: 740, vehicles: { Van: 160, Truck: 145, Bike: 141, Plane: 151, Train: 143 } },
+  { name: "Bangalore-West", count: 723, vehicles: { Van: 135, Train: 147, Plane: 154, Bike: 154, Truck: 133 } },
+  { name: "Hyderabad-North", count: 722, vehicles: { Train: 135, Truck: 135, Bike: 139, Plane: 145, Van: 168 } },
+  { name: "Bangalore-Central", count: 714, vehicles: { Bike: 136, Truck: 142, Plane: 138, Van: 153, Train: 145 } },
+  { name: "Kolkata-Central", count: 712, vehicles: { Bike: 130, Van: 153, Train: 133, Plane: 165, Truck: 131 } },
+  { name: "Bangalore-East", count: 707, vehicles: { Truck: 134, Van: 134, Train: 148, Plane: 146, Bike: 145 } },
+  { name: "Kolkata-North", count: 700, vehicles: { Plane: 125, Bike: 131, Van: 153, Train: 161, Truck: 130 } },
+  { name: "Hyderabad-Central", count: 680, vehicles: { Plane: 135, Bike: 145, Truck: 135, Train: 138, Van: 127 } },
+  { name: "Chennai-Central", count: 539, vehicles: { Plane: 103, Van: 113, Train: 102, Truck: 119, Bike: 102 } },
+  { name: "Chennai-North", count: 527, vehicles: { Truck: 118, Train: 104, Bike: 110, Plane: 92, Van: 103 } },
+  { name: "Chennai-Outer", count: 513, vehicles: { Bike: 103, Train: 100, Truck: 115, Van: 93, Plane: 102 } },
+  { name: "Chennai-South", count: 498, vehicles: { Van: 99, Bike: 92, Plane: 103, Truck: 105, Train: 99 } },
+  { name: "Delhi-East", count: 370, vehicles: { Van: 74, Plane: 71, Truck: 76, Train: 81, Bike: 68 } },
+  { name: "Delhi-West", count: 357, vehicles: { Train: 68, Truck: 71, Van: 69, Bike: 72, Plane: 77 } },
+  { name: "Delhi-Outer", count: 342, vehicles: { Plane: 62, Truck: 81, Train: 69, Van: 75, Bike: 55 } },
+  { name: "Pune-West", count: 333, vehicles: { Bike: 70, Plane: 78, Truck: 73, Van: 60, Train: 52 } },
+  { name: "Delhi-Central", count: 331, vehicles: { Truck: 63, Bike: 68, Train: 70, Van: 80, Plane: 50 } },
+  { name: "Pune-Central", count: 331, vehicles: { Bike: 75, Truck: 68, Van: 64, Plane: 51, Train: 73 } },
+  { name: "Delhi-Airport", count: 330, vehicles: { Truck: 64, Train: 76, Van: 66, Bike: 62, Plane: 62 } },
+  { name: "Pune-East", count: 317, vehicles: { Bike: 68, Train: 73, Van: 68, Truck: 46, Plane: 62 } },
+  { name: "Mumbai-Airport", count: 261, vehicles: { Plane: 55, Train: 56, Truck: 59, Bike: 42, Van: 49 } },
+  { name: "Mumbai-International", count: 260, vehicles: { Bike: 61, Plane: 45, Van: 59, Truck: 65, Train: 30 } },
+  { name: "Mumbai-Central", count: 249, vehicles: { Train: 61, Van: 48, Truck: 51, Plane: 55, Bike: 34 } },
+  { name: "Mumbai-East", count: 240, vehicles: { Plane: 55, Truck: 47, Train: 37, Bike: 47, Van: 54 } },
+  { name: "Mumbai-West", count: 231, vehicles: { Bike: 47, Train: 46, Van: 47, Truck: 54, Plane: 37 } },
+  { name: "Ahmedabad-East", count: 212, vehicles: { Truck: 37, Plane: 53, Bike: 33, Train: 44, Van: 45 } },
+  { name: "Ahmedabad-West", count: 197, vehicles: { Van: 39, Train: 37, Plane: 51, Bike: 40, Truck: 30 } },
+  { name: "Ahmedabad-Central", count: 177, vehicles: { Plane: 34, Train: 31, Truck: 41, Bike: 30, Van: 41 } },
+]
 export default function DashboardPage() {
+  const [selectedNode, setSelectedNode] = useState<Node | null>(null)
+
+  const getColorForCount = (count: number) => {
+  const maxCount = Math.max(...nodesData.map(node => node.count))
+  const percentage = count / maxCount
+  if (percentage > 0.8) return "bg-red-500"
+  if (percentage > 0.6) return "bg-orange-500"
+  if (percentage > 0.4) return "bg-yellow-500"
+  if (percentage > 0.2) return "bg-green-500"
+  return "bg-blue-500"
+  }
   const [energyReading, setEnergyReading] = useState("")
   const [wasteAmount, setWasteAmount] = useState("")
   const [isLoading1, setIsLoading1] = useState(false);
@@ -433,32 +482,43 @@ export default function DashboardPage() {
         </TabsContent>
           
         <TabsContent value="damage">
-        <Card>
-          <CardHeader>
-            <CardTitle>Learning Games</CardTitle>
-            <CardDescription>
-            Play fun games and earn points
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-            <Button 
-              onClick={handleExecuteGame1} 
-              disabled={isLoading1}>
-              {isLoading1 ? 'Executing...' : 'Game 1'}
-          </Button>
-            <Button 
-              onClick={handleExecuteGame2} 
-              disabled={isLoading2}>
-              {isLoading2 ? 'Executing...' : 'Game 2'}
-          </Button>
-            <Button 
-              onClick={handleExecuteGame3} 
-              disabled={isLoading3}>
-              {isLoading3 ? 'Executing...' : 'Game 3'}
-          </Button>
-          </div>
-          </CardContent>
+          <Card className="w-full max-w-2xl mx-auto">
+            <CardHeader>
+              <CardTitle>Postal Service Nodes and Vehicle Distribution</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-5 gap-2 mb-4">
+                {nodesData.map((node) => (
+                  <button
+                    key={node.name}
+                    className={`p-2 rounded ${getColorForCount(node.count)} text-white text-xs`}
+                    onClick={() => setSelectedNode(node)}
+                  >
+                    {node.name}
+                  </button>
+                ))}
+              </div>
+              {selectedNode && (
+                <div className="mt-4">
+                  <h3 className="text-lg font-semibold mb-2">{selectedNode.name}</h3>
+                  <p className="mb-2">Damage Count: {selectedNode.count}</p>
+                  <h4 className="font-semibold mb-1">Vehicle Distribution:</h4>
+                  <ul className="grid grid-cols-2 gap-2">
+                    {Object.entries(selectedNode.vehicles).map(([vehicle, count]) => (
+                      <li key={vehicle} className="flex justify-between">
+                        <span>{vehicle}:</span>
+                        <span>{count}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {!selectedNode && (
+                <div className="text-center text-gray-500">
+                  Click on a node to view its details and vehicle distribution
+                </div>
+              )}
+            </CardContent>
           </Card>
         </TabsContent>
       </Tabs>
