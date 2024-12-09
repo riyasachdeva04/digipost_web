@@ -12,6 +12,9 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Trophy, Users, Zap } from 'lucide-react'
 import { Appbar } from "./components/Appbar"
+
+
+
 // import { error } from "console"
 
 const energyData = [
@@ -43,6 +46,28 @@ export default function DashboardPage() {
   const [isLoading1, setIsLoading1] = useState(false);
   const [isLoading2, setIsLoading2] = useState(false);
   const [isLoading3, setIsLoading3] = useState(false);
+
+
+  // const downloadReport = (fileId: string) => {
+  //   const link = document.createElement("a");
+  //   link.href = `https://drive.google.com/uc?export=download&id=${fileId}`;
+  //   link.target = "_blank"; // Opens in a new tab
+  //   link.rel = "noopener noreferrer"; // Security feature
+  //   link.click();
+  // };
+
+
+  const downloadReport = (fileName: string) => {
+    const link = document.createElement("a");
+    link.href = `/${fileName}`; // Path to the report in your public folder or backend endpoint
+    link.download = fileName; // Sets the downloaded file's name
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+  
+  
+  
 
     const handleExecuteGame1 = async () => {
         setIsLoading1(true);
@@ -282,32 +307,72 @@ export default function DashboardPage() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="reports">
-          <Card>
-            <CardHeader>
-              <CardTitle>Sustainability Reports</CardTitle>
-              <CardDescription>
-                View and download your BRSR reports
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span>May 2023 BRSR Report</span>
-                  <Button>Download</Button>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span>April 2023 BRSR Report</span>
-                  <Button>Download</Button>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span>March 2023 BRSR Report</span>
-                  <Button>Download</Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
+        {/* <TabsContent value="reports">
+  <Card>
+    <CardHeader>
+      <CardTitle>Sustainability Reports</CardTitle>
+      <CardDescription>
+        View and download your BRSR reports
+      </CardDescription>
+    </CardHeader>
+    <CardContent>
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <span>2024 BRSR Report</span>
+          <Button onClick={() => downloadReport("1XXCeMbxUW0SFZQA0hVxQGxeNrzki4KitbvlodX7D8zU")}>
+            Download
+          </Button>
+        </div>
+        <div className="flex items-center justify-between">
+          <span>April 2023 BRSR Report</span>
+          <Button onClick={() => downloadReport("April_2023_BRSR_Report.pdf")}>
+            Download
+          </Button>
+        </div>
+        <div className="flex items-center justify-between">
+          <span>March 2023 BRSR Report</span>
+          <Button onClick={() => downloadReport("March_2023_BRSR_Report.pdf")}>
+            Download
+          </Button>
+        </div>
+      </div>
+    </CardContent>
+  </Card>
+</TabsContent> */}
+
+          <TabsContent value="reports">
+  <Card>
+    <CardHeader>
+      <CardTitle>Sustainability Reports</CardTitle>
+      <CardDescription>
+        View and download your BRSR reports
+      </CardDescription>
+    </CardHeader>
+    <CardContent>
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <span>2024 BRSR Report</span>
+          <Button onClick={() => downloadReport("BRSR_REPORT_2024.pdf")}>
+            Download
+          </Button>
+        </div>
+        <div className="flex items-center justify-between">
+          <span>2023 BRSR Report</span>
+          <Button onClick={() => downloadReport("BRSR_REPORT_2024.pdf")}>
+            Download
+          </Button>
+        </div>
+        <div className="flex items-center justify-between">
+          <span>2022 BRSR Report</span>
+          <Button onClick={() => downloadReport("BRSR_REPORT_2024.pdf")}>
+            Download
+          </Button>
+        </div>
+      </div>
+    </CardContent>
+  </Card>
+</TabsContent>
+
 
         <TabsContent value="leaderboard">
           <Card>
