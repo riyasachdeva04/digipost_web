@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ResponsiveLine } from "@nivo/line"
 import { Leaf, Award, Target, Zap } from 'lucide-react'
 import Avatar3D from '../components/Avatar3d2'
+import { Appbar } from '../components/Appbar'
 
 // Mock data for the employee
 const employeeData = {
@@ -43,7 +44,11 @@ export default function EmployeeProfilePage() {
   }
 
   return (
+    <div>
+        <Appbar></Appbar>
+    
     <div className="container mx-auto py-10 px-4 flex">
+        
       <div className="w-1/4 h-screen flex flex-col items-center bg-gray-700 p-4">
         <div className='h-full'>
         <Avatar3D /></div>
@@ -212,6 +217,7 @@ export default function EmployeeProfilePage() {
           </TabsContent>
         </Tabs>
       </div>
+    </div>
     </div>
   )
 }
