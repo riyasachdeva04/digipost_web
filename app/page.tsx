@@ -102,10 +102,10 @@ export default function DashboardPage() {
     }
 };
   return (
-    <div className="container mx-auto py-10">
+    <div className="">
         <Appbar></Appbar>
-      <h1 className="text-4xl font-bold mb-8">DoP BRSR Dashboard</h1>
-      <div style={{ height: '600px', width: '100%' }}>
+      {/* <h1 className="text-4xl font-bold mx-10 my-8">DoP BRSR Dashboard</h1> */}
+      <div className="container mx-auto py-10" style={{ height: '600px', width: '100%' }}>
       <iframe
         title="Postal Divisions Map"
         src="/india_postal_divisions_map_with_heatmap.html"  // The path to the map file in your public folder
@@ -122,6 +122,7 @@ export default function DashboardPage() {
           <TabsTrigger value="reports">Reports</TabsTrigger>
           <TabsTrigger value="leaderboard">Leaderboard</TabsTrigger>
           <TabsTrigger value="game">Games</TabsTrigger>
+          <TabsTrigger value="damage">Damage Prone Routes</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="space-y-4">
@@ -366,7 +367,35 @@ export default function DashboardPage() {
           </Card>
         </TabsContent>
           
-
+        <TabsContent value="damage">
+        <Card>
+          <CardHeader>
+            <CardTitle>Learning Games</CardTitle>
+            <CardDescription>
+            Play fun games and earn points
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+            <Button 
+              onClick={handleExecuteGame1} 
+              disabled={isLoading1}>
+              {isLoading1 ? 'Executing...' : 'Game 1'}
+          </Button>
+            <Button 
+              onClick={handleExecuteGame2} 
+              disabled={isLoading2}>
+              {isLoading2 ? 'Executing...' : 'Game 2'}
+          </Button>
+            <Button 
+              onClick={handleExecuteGame3} 
+              disabled={isLoading3}>
+              {isLoading3 ? 'Executing...' : 'Game 3'}
+          </Button>
+          </div>
+          </CardContent>
+          </Card>
+        </TabsContent>
       </Tabs>
     </div>
   )
