@@ -14,7 +14,121 @@ import { Trophy, Users, Zap } from 'lucide-react'
 import { Appbar } from "./components/Appbar"
 
 
-
+const postofficesdata=[
+  {
+       "Name": "Mumbai HPO",
+       "AQI_Category": "Unhealthy",
+       "G_C": 10,
+       "Last_Month_Community_Engagement_Activities_(per_month)": 4,
+       "Last_Month_Energy_Consumption_(kWhpermonth)": 3000,
+       "Last_Month_Fuel_Usage_(literspermonth)": 200,
+       "Last_Month_Paper_Waste_Threshold_(kgpermonth)": 250,
+       "Last_Month_Water_Usage_(literspermonth)": 5000,
+       "New_Month_Community_Engagement_Activities_(per_month)": 5,
+       "New_Month_Energy_Consumption_(kWhpermonth)": 3200,
+       "New_Month_Fuel_Usage_(literspermonth)": 180,
+       "New_Month_Paper_Waste_Threshold_(kgpermonth)": 300,
+       "New_Month_Water_Usage_(literspermonth)": 4800,
+       "Post_Office_ID": 147001,
+       "Rank": 1,
+       "Region": "Urban",
+       "Score": 17.2,
+       "Suggested_Plants_for_Plantation": "Neem, Peepal, Tulsi",
+       "T_C": 15,
+       "Type_of_Post_Office": "Head Post Office (HPO)",
+       "Typical_AQI_Range": "151–200"
+     },
+     {
+       "Name": "Delhi SPO",
+       "AQI_Category": "Moderate",
+       "G_C": 11,
+       "Last_Month_Community_Engagement_Activities_(per_month)": 4,
+       "Last_Month_Energy_Consumption_(kWhpermonth)": 3000,
+       "Last_Month_Fuel_Usage_(literspermonth)": 200,
+       "Last_Month_Paper_Waste_Threshold_(kgpermonth)": 250,
+       "Last_Month_Water_Usage_(literspermonth)": 5000,
+       "New_Month_Community_Engagement_Activities_(per_month)": 3,
+       "New_Month_Energy_Consumption_(kWhpermonth)": 2700,
+       "New_Month_Fuel_Usage_(literspermonth)": 210,
+       "New_Month_Paper_Waste_Threshold_(kgpermonth)": 280,
+       "New_Month_Water_Usage_(literspermonth)": 5200,
+       "Post_Office_ID": 147026,
+       "Rank": 2,
+       "Region": "Urban",
+       "Score": -0.26666666666666955,
+       "Suggested_Plants_for_Plantation": "Neem, Peepal, Tulsi",
+       "T_C": 15,
+       "Type_of_Post_Office": "Sub Post Office (SPO)",
+       "Typical_AQI_Range": "101–150"
+     },
+     { "Name": "Kolkata BPO",
+       "AQI_Category": "Satisfactory",
+       "G_C": 12,
+       "Last_Month_Community_Engagement_Activities_(per_month)": 4,
+       "Last_Month_Energy_Consumption_(kWhpermonth)": 3000,
+       "Last_Month_Fuel_Usage_(literspermonth)": 200,
+       "Last_Month_Paper_Waste_Threshold_(kgpermonth)": 250,
+       "Last_Month_Water_Usage_(literspermonth)": 5000,
+       "New_Month_Community_Engagement_Activities_(per_month)": 5,
+       "New_Month_Energy_Consumption_(kWhpermonth)": 3200,
+       "New_Month_Fuel_Usage_(literspermonth)": 180,
+       "New_Month_Paper_Waste_Threshold_(kgpermonth)": 300,
+       "New_Month_Water_Usage_(literspermonth)": 4800,
+       "Post_Office_ID": 147061,
+       "Rank": 5,
+       "Region": "Rural",
+       "Score": -261.17777777777775,
+       "Suggested_Plants_for_Plantation": "Neem, Peepal, Tulsi",
+       "T_C": 15,
+       "Type_of_Post_Office": "Branch Post Office (BPO)",
+       "Typical_AQI_Range": "51–100"
+     },
+     { "Name": "Chennai BPO",
+       "AQI_Category": "Satisfactory",
+       "G_C": 13,
+       "Last_Month_Community_Engagement_Activities_(per_month)": 3,
+       "Last_Month_Energy_Consumption_(kWhpermonth)": 2800,
+       "Last_Month_Fuel_Usage_(literspermonth)": 190,
+       "Last_Month_Paper_Waste_Threshold_(kgpermonth)": 240,
+       "Last_Month_Water_Usage_(literspermonth)": 4800,
+       "New_Month_Community_Engagement_Activities_(per_month)": 5,
+       "New_Month_Energy_Consumption_(kWhpermonth)": 3200,
+       "New_Month_Fuel_Usage_(literspermonth)": 180,
+       "New_Month_Paper_Waste_Threshold_(kgpermonth)": 200,
+       "New_Month_Water_Usage_(literspermonth)": 4800,
+       "Post_Office_ID": 147052,
+       "Rank": 3,
+       "Region": "Semi-Urban",
+       "Score": -125.04594820384294,
+       "Suggested_Plants_for_Plantation": "Spider Plant, Aloe Vera",
+       "T_C": 15,
+       "Type_of_Post_Office": "Branch Post Office (BPO)",
+       "Typical_AQI_Range": "51–100"
+     },
+     {
+       "Name": "Bengaluru BPO",
+       "AQI_Category": "Satisfactory",
+       "G_C": 9,
+       "Last_Month_Community_Engagement_Activities_(per_month)": 4,
+       "Last_Month_Energy_Consumption_(kWhpermonth)": 3000,
+       "Last_Month_Fuel_Usage_(literspermonth)": 200,
+       "Last_Month_Paper_Waste_Threshold_(kgpermonth)": 250,
+       "Last_Month_Water_Usage_(literspermonth)": 5000,
+       "New_Month_Community_Engagement_Activities_(per_month)": 5,
+       "New_Month_Energy_Consumption_(kWhpermonth)": 3200,
+       "New_Month_Fuel_Usage_(literspermonth)": 180,
+       "New_Month_Paper_Waste_Threshold_(kgpermonth)": 300,
+       "New_Month_Water_Usage_(literspermonth)": 4800,
+       "Post_Office_ID": 147051,
+       "Rank": 4,
+       "Region": "Semi-Urban",
+       "Score": -135.84444444444446,
+       "Suggested_Plants_for_Plantation": "Neem, Peepal, Tulsi",
+       "T_C": 10,
+       "Type_of_Post_Office": "Branch Post Office (BPO)",
+       "Typical_AQI_Range": "51–100"
+     }
+ ]
 // import { error } from "console"
 
 const energyData = [
@@ -424,32 +538,34 @@ export default function DashboardPage() {
 </TabsContent>
 
 
-        <TabsContent value="leaderboard">
-          <Card>
-            <CardHeader>
-              <CardTitle>Sustainability Leaderboard</CardTitle>
-              <CardDescription>
-                Top performing postal circles in sustainability
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {leaderboardData.map((circle, index) => (
-                  <div key={circle.name} className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <Badge variant="outline">{index + 1}</Badge>
-                      <span>{circle.name}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Progress value={circle.score} className="w-[100px]" />
-                      <span className="font-bold">{circle.score}</span>
-                    </div>
-                  </div>
-                ))}
+<TabsContent value="leaderboard">
+  <Card>
+    <CardHeader>
+      <CardTitle>Sustainability Leaderboard</CardTitle>
+      <CardDescription>
+        Top performing postal circles in sustainability
+      </CardDescription>
+    </CardHeader>
+    <CardContent>
+      <div className="space-y-4">
+        {postofficesdata
+          .sort((a, b) => a.Rank - b.Rank)
+          .map((circle) => (
+            <div key={circle.Post_Office_ID} className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <Badge variant="outline">{circle.Rank}</Badge>
+                <span>{circle.Name}</span>
               </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
+              <div className="flex items-center space-x-2">
+                <Progress value={circle.Score} className="w-[100px]" />
+                <span className="font-bold">{circle.Score}</span>
+              </div>
+            </div>
+          ))}
+      </div>
+    </CardContent>
+  </Card>
+</TabsContent>
 
         <TabsContent value="game">
         <Card>
