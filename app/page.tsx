@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ResponsiveBar } from "@nivo/bar"
@@ -12,7 +12,24 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Trophy, Users, Zap, Bot, Phone } from 'lucide-react'
 import { Appbar } from "./components/Appbar"
+import {  Table,  TableHeader,  TableBody,  TableColumn,  TableRow,  TableCell} from "@nextui-org/table";
+import { db } from './firebase';
+import { ref, get } from 'firebase/database';
 
+const fetchData = async () => {
+  const dbRef = ref(db, 'complaints');
+  const snapshot = await get(dbRef);
+  const data = snapshot.val();
+  const complaints = Object.keys(data).map(key => ({
+    id: key,
+    ...data[key]
+  }));
+  // for (const complaint of complaints) {
+  //   const { complaint: complaintText, id, timestamp, status } = complaint;
+  //   console.log(complaintText, id, timestamp, status);
+  // }
+  return complaints;
+};
 
 const postofficesdata=[
   {
@@ -192,6 +209,8 @@ const nodesData: Node[] = [
   { name: "Ahmedabad-West", count: 197, vehicles: { Van: 39, Train: 37, Plane: 51, Bike: 40, Truck: 30 } },
   { name: "Ahmedabad-Central", count: 177, vehicles: { Plane: 34, Train: 31, Truck: 41, Bike: 30, Van: 41 } },
 ]
+
+
 export default function DashboardPage() {
   const [selectedNode, setSelectedNode] = useState<Node | null>(null)
 
@@ -214,7 +233,16 @@ export default function DashboardPage() {
   // const [chatBox, setchatBox] = useState(false);
   const [chatBoxVisible, setChatBoxVisible] = useState(false);
   const [Counter, setCounter] = useState(0);
+  const [complaints, setComplaints] = useState([]);
 
+  useEffect(() => {
+    const fetchDataAsync = async () => {
+      const complaintsData = await fetchData();
+      setComplaints(complaintsData);
+    };
+    fetchDataAsync();
+  }, []);
+    
 
   // const downloadReport = (fileId: string) => {
   //   const link = document.createElement("a");
@@ -344,6 +372,7 @@ const handleChat = async () => {
           <TabsTrigger value="leaderboard">Leaderboard</TabsTrigger>
           <TabsTrigger value="game">Games</TabsTrigger>
           <TabsTrigger value="damage">Damage Prone Routes</TabsTrigger>
+          <TabsTrigger value="bot">Bot Logs</TabsTrigger>
         </TabsList>
         
 
@@ -671,6 +700,33 @@ const handleChat = async () => {
             </CardContent>
           </Card>
         </TabsContent>
+        <TabsContent value="bot">
+          <Card className="w-full max-w-2xl mx-auto">
+            <CardHeader>
+              <CardTitle>Bot Logs</CardTitle>
+            </CardHeader>
+            <CardContent>
+            <Table aria-label="Complaints Table">
+              <TableHeader>
+                <TableColumn>User Enquiry ID</TableColumn>
+                <TableColumn>Complaint</TableColumn>
+                <TableColumn>TimeStamp</TableColumn>
+                <TableColumn>Status</TableColumn>
+              </TableHeader>
+              <TableBody>
+                {complaints.map((complaint) => (
+                  <TableRow key={complaint.id}>
+                    <TableCell>{complaint.id}</TableCell>
+                    <TableCell>{complaint.complaint}</TableCell>
+                    <TableCell>{complaint.timestamp}</TableCell>
+                    <TableCell>{complaint.status}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+            </CardContent>
+          </Card>
+        </TabsContent>
       </Tabs>
       <button 
         className="fixed bottom-4 right-4 bg-blue-500 text-white p-3 rounded-full shadow-lg flex items-center " 
@@ -701,16 +757,17 @@ const handleChat = async () => {
             
               const chatBox = document.querySelector(".h-64.overflow-y-scroll.border.p-2.mb-2");
               if (chatBox) {
+                
+                setCounter(Counter+1);
+                const userMessage = document.createElement("div");
+                chatBox.appendChild(userMessage);
+                userMessage.className = "p-2 bg-blue-200 rounded mb-2 self-end";
+                userMessage.textContent = chatMessage;
+
                 const botMessage = document.createElement("div");
                 botMessage.className = "p-2 bg-gray-200 rounded mb-2";
                 botMessage.textContent = chatResponse;
                 chatBox.appendChild(botMessage);
-                setCounter(Counter+1);
-                const userMessage = document.createElement("div");
-                userMessage.className = "p-2 bg-blue-200 rounded mb-2 self-end";
-                userMessage.textContent = chatMessage;
-                if(Counter>0){chatBox.appendChild(userMessage);}
-                
 
                 chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
                 

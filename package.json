@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nextui-org/system": "^2.4.4",
+    "@nextui-org/table": "^2.2.6",
+    "@nextui-org/theme": "^2.4.3",
     "@nivo/bar": "^0.88.0",
     "@nivo/line": "^0.88.0",
     "@nivo/pie": "^0.88.0",
@@ -19,6 +22,8 @@
     "@react-three/drei": "^9.120.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "firebase": "^11.0.2",
+    "framer-motion": "^11.13.5",
     "lucide-react": "^0.468.0",
     "next": "14.2.15",
     "next-auth": "^4.24.8",
