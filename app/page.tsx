@@ -146,13 +146,13 @@ const wasteData = [
   { id: "Others", value: 15 },
 ]
 
-const leaderboardData = [
-  { name: "Mumbai Circle", score: 95 },
-  { name: "Delhi Circle", score: 92 },
-  { name: "Kerala Circle", score: 90 },
-  { name: "Gujarat Circle", score: 88 },
-  { name: "Tamil Nadu Circle", score: 87 },
-]
+// const leaderboardData = [
+//   { name: "Mumbai Circle", score: 95 },
+//   { name: "Delhi Circle", score: 92 },
+//   { name: "Kerala Circle", score: 90 },
+//   { name: "Gujarat Circle", score: 88 },
+//   { name: "Tamil Nadu Circle", score: 87 },
+// ]
 interface Node {
   name: string
   count: number
@@ -209,6 +209,11 @@ export default function DashboardPage() {
   const [isLoading1, setIsLoading1] = useState(false);
   const [isLoading2, setIsLoading2] = useState(false);
   const [isLoading3, setIsLoading3] = useState(false);
+  const [chatMessage, setChatMessage] = useState("");
+  const [chatResponse, setChatResponse] = useState("");
+  // const [chatBox, setchatBox] = useState(false);
+  const [chatBoxVisible, setChatBoxVisible] = useState(false);
+  const [Counter, setCounter] = useState(0);
 
 
   // const downloadReport = (fileId: string) => {
@@ -288,6 +293,34 @@ export default function DashboardPage() {
     } finally {
         setIsLoading3(false);
     }
+};
+const handleChat = async () => {
+  setIsLoading1(true);
+  try {
+      const response = await fetch('/api/chat-bot', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: chatMessage }),
+      });
+      const result = await response.json();
+      setChatResponse(result.response);
+      
+      if (!response.ok) {
+          
+          throw new Error(result.error || 'Script execution failed');
+      }
+
+      console.log('Script Output:', result.response);
+      alert('Script executed successfully: ' + result.output);
+  } catch (err) {
+      console.log('hi')
+      console.error('Execution error:', err);
+      alert('Error: ' );
+  } finally {
+      setIsLoading1(false);
+  }
 };
   return (
     <div className="">
@@ -641,11 +674,51 @@ export default function DashboardPage() {
       </Tabs>
       <button 
         className="fixed bottom-4 right-4 bg-blue-500 text-white p-3 rounded-full shadow-lg flex items-center " 
-        onClick={() => alert('Call button clicked!')}
+        onClick={() => setChatBoxVisible(true)}
       >
         Chat
         <Bot className=" ml-2 h-15 w-15 mr-2" />
       </button>
+      {chatBoxVisible && (
+        <div className="fixed bottom-4 left-4 bg-white p-4 rounded-lg shadow-lg w-80">
+          <div className="flex justify-between items-center mb-2">
+            <h2 className="text-lg font-semibold">Chatbox</h2>
+            <button onClick={() => setChatBoxVisible(false)} className="text-red-500">X</button>
+          </div>
+          <div className="h-64 overflow-y-scroll border p-2 mb-2">
+            {/* Chat messages will go here */}
+          </div>
+          <div className="flex">
+            <input
+              type="text"
+              placeholder="Type your message..."
+              className="flex-grow border rounded-l-lg p-2"
+              value={chatMessage}
+              onChange={(e) => setChatMessage(e.target.value)}
+            />
+            <button className="bg-blue-500 text-white p-2 rounded-r-lg" onClick={async () => {
+              await handleChat();
+            
+              const chatBox = document.querySelector(".h-64.overflow-y-scroll.border.p-2.mb-2");
+              if (chatBox) {
+                const botMessage = document.createElement("div");
+                botMessage.className = "p-2 bg-gray-200 rounded mb-2";
+                botMessage.textContent = chatResponse;
+                chatBox.appendChild(botMessage);
+                setCounter(Counter+1);
+                const userMessage = document.createElement("div");
+                userMessage.className = "p-2 bg-blue-200 rounded mb-2 self-end";
+                userMessage.textContent = chatMessage;
+                if(Counter>0){chatBox.appendChild(userMessage);}
+                
+
+                chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+                
+              }
+            }} disabled={isLoading1}>{isLoading1 ? 'Sending...' : 'Send'}</button>
+          </div>
+        </div>
+      )}
       <button 
         className="fixed bottom-24 right-4 bg-blue-500 text-white p-3 rounded-full shadow-lg flex items-center " 
         onClick={() => window.location.href = 'tel:+17755936425'}
