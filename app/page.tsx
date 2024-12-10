@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Trophy, Users, Zap } from 'lucide-react'
+import { Trophy, Users, Zap, Bot, Phone } from 'lucide-react'
 import { Appbar } from "./components/Appbar"
 
 
@@ -312,6 +312,7 @@ export default function DashboardPage() {
           <TabsTrigger value="game">Games</TabsTrigger>
           <TabsTrigger value="damage">Damage Prone Routes</TabsTrigger>
         </TabsList>
+        
 
         <TabsContent value="overview" className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -638,6 +639,20 @@ export default function DashboardPage() {
           </Card>
         </TabsContent>
       </Tabs>
+      <button 
+        className="fixed bottom-4 right-4 bg-blue-500 text-white p-3 rounded-full shadow-lg flex items-center " 
+        onClick={() => alert('Call button clicked!')}
+      >
+        Chat
+        <Bot className=" ml-2 h-15 w-15 mr-2" />
+      </button>
+      <button 
+        className="fixed bottom-24 right-4 bg-blue-500 text-white p-3 rounded-full shadow-lg flex items-center " 
+        onClick={() => window.location.href = 'tel:+17755936425'}
+      >
+        Call
+        <Phone className=" ml-2 h-15 w-15 mr-2" />
+      </button>
     </div>
   )
 }
