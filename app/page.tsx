@@ -664,34 +664,41 @@ const handleChat = async () => {
               disabled={isLoading3}>
               {isLoading3 ? 'Executing...' : 'Game 3'}
           </Button>
-          </div>
+            </div>
             {divLoad && (
-              <div >
-              <h2 >Quiz of the Day</h2>
-        
-              <div >
-                <h3 >Word of the Day</h3>
-                <p >{word_of_the_day}</p>
-              </div>
-        
-              <div >
-                <h3>MCQs</h3>
-                <div>
-                  {mcqs.split('\n\n').map((block, index) => (
-                    <div key={index}>
-                      {block.split('\n').map((line, idx) => (
-                        <p key={idx}>{line}</p>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              </div>
-        
-              <div>
-                <h3>Summary</h3>
-                <p>1234</p>
+            <div className="quiz-container p-6 bg-white rounded-lg shadow-md">
+            <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Quiz of the Day</h2>
+          
+            {/* Word of the Day Section */}
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold text-gray-700 mb-2">Word of the Day</h3>
+              <p className="text-gray-600 text-lg italic">{word_of_the_day}</p>
+            </div>
+          
+            {/* MCQs Section */}
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold text-gray-700 mb-4">MCQs</h3>
+              <div className="space-y-4">
+                {mcqs.split('\n\n').map((block, index) => (
+                  <div key={index} className="p-4 bg-gray-100 rounded-md">
+                    {block.split('\n').map((line, idx) => (
+                      idx === 0 ? (
+                        <p key={idx} className="font-semibold text-black mb-2">{line}</p>
+                      ) : (
+                        line.startsWith("Answer:") ? (
+                          <p key={idx} className="text-sm italic text-gray-500">{line}</p>
+                        ) : (
+                          <button key={idx} className="block w-full text-left p-2 bg-white border border-gray-300 rounded-md hover:bg-gray-200">{line}</button>
+                        )
+                      )
+                    ))}
+                  </div>
+                ))}
               </div>
             </div>
+        
+          </div>
+          
             )}
           </CardContent>
           </Card>
