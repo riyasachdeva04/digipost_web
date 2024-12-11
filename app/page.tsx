@@ -213,15 +213,14 @@ const nodesData: Node[] = [
 
 export default function DashboardPage() {
   const [selectedNode, setSelectedNode] = useState<Node | null>(null)
-
   const getColorForCount = (count: number) => {
-  const maxCount = Math.max(...nodesData.map(node => node.count))
-  const percentage = count / maxCount
-  if (percentage > 0.8) return "bg-red-500"
-  if (percentage > 0.6) return "bg-orange-500"
-  if (percentage > 0.4) return "bg-yellow-500"
-  if (percentage > 0.2) return "bg-green-500"
-  return "bg-blue-500"
+    const maxCount = Math.max(...nodesData.map(node => node.count))
+    const percentage = count / maxCount
+    if (percentage > 0.8) return "bg-red-500"
+    if (percentage > 0.6) return "bg-orange-500"
+    if (percentage > 0.4) return "bg-yellow-500"
+    if (percentage > 0.2) return "bg-green-500"
+    return "bg-blue-500"
   }
   const [energyReading, setEnergyReading] = useState("")
   const [wasteAmount, setWasteAmount] = useState("")
@@ -234,7 +233,14 @@ export default function DashboardPage() {
   const [chatBoxVisible, setChatBoxVisible] = useState(false);
   const [Counter, setCounter] = useState(0);
   const [complaints, setComplaints] = useState([]);
-
+  const[quizOutput, setQuizOutput] = useState(null);
+  const[divLoad, setDivLoad] = useState(false);
+  let quizData = {};
+  if(quizOutput){quizData = JSON.parse(quizOutput)
+    console.log(quizData["word_of_the_day"]);
+  };
+  let word_of_the_day = quizData["word_of_the_day"];
+  let mcqs = quizData["mcqs"];
   useEffect(() => {
     const fetchDataAsync = async () => {
       const complaintsData = await fetchData();
@@ -315,6 +321,9 @@ export default function DashboardPage() {
 
         console.log('Script Output:', result.output);
         alert('Script executed successfully: ' + result.output);
+        await setQuizOutput(result.output);
+        console.log('Quiz Output:', quizOutput);
+        setDivLoad(true);
     } catch (err) {
         console.error('Execution error:', err);
         alert('Error: ' );
@@ -656,6 +665,34 @@ const handleChat = async () => {
               {isLoading3 ? 'Executing...' : 'Game 3'}
           </Button>
           </div>
+            {divLoad && (
+              <div >
+              <h2 >Quiz of the Day</h2>
+        
+              <div >
+                <h3 >Word of the Day</h3>
+                <p >{word_of_the_day}</p>
+              </div>
+        
+              <div >
+                <h3>MCQs</h3>
+                <div>
+                  {mcqs.split('\n\n').map((block, index) => (
+                    <div key={index}>
+                      {block.split('\n').map((line, idx) => (
+                        <p key={idx}>{line}</p>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+        
+              <div>
+                <h3>Summary</h3>
+                <p>1234</p>
+              </div>
+            </div>
+            )}
           </CardContent>
           </Card>
         </TabsContent>
