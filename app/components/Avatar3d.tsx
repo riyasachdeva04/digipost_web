@@ -64,13 +64,13 @@ import { OrbitControls, useGLTF } from '@react-three/drei';
 
 function Model() {
   const { scene } = useGLTF('/avatar.glb');
-  return <primitive object={scene} scale={[4, 4, 4]}/>; // Increased scale for bigger avatar
+  return <primitive object={scene} scale={[6, 6, 6]}/>; // Increased scale for bigger avatar
 }
 
 export default function Avatar3D() {
   return (
     <Canvas
-      camera={{ position: [-3, 2, 10], fov: 70 }} // Adjusted camera for better framing of the larger avatar
+      camera={{ position: [0, 2, 20], fov: 70 }} // Adjusted camera for better framing of the larger avatar
       style={{ width: '100%', height: '100vh' }} // Ensure the Canvas fits the viewport
     >
       <Suspense fallback={null}>
