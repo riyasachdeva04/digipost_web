@@ -17,8 +17,8 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 # Game variables
-PLAYER_WIDTH = 50
-PLAYER_HEIGHT = 50
+PLAYER_WIDTH = 100
+PLAYER_HEIGHT = 150
 ITEM_SIZE = 80
 PLAYER_SPEED = 5
 ITEM_SPEED = 3
@@ -37,8 +37,10 @@ biodegradable_images = load_images("scripts/biodegradable")
 non_biodegradable_images = load_images("scripts/non-biodegradable")
 
 # Load player image
-player_image = pygame.image.load("scripts/dustbin.jpg")
+player_image = pygame.image.load("scripts/dustbin.png")
 player_image = pygame.transform.scale(player_image, (PLAYER_WIDTH, PLAYER_HEIGHT))
+wallpaper = pygame.image.load("scripts/wallpaper.jpg")
+wallpaper = pygame.transform.scale(wallpaper, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
 class Player:
     def __init__(self):
@@ -128,7 +130,7 @@ def main():
             if player.lives <= 0:
                 running = False
 
-        SCREEN.fill(WHITE)
+        SCREEN.blit(wallpaper, (0, 0))
         player.draw()
         for item in items:
             item.draw()
@@ -150,7 +152,8 @@ def main():
         pygame.display.flip()
         clock.tick(60)
 
-    SCREEN.fill(WHITE)
+    SCREEN.blit(wallpaper, (0, 0))
+
     game_over_text = font.render(f"Game Over! Score: {player.score}", True, BLACK)
     SCREEN.blit(game_over_text, game_over_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)))
     pygame.display.flip()

@@ -686,9 +686,10 @@ const handleChat = async () => {
                         <p key={idx} className="font-semibold text-black mb-2">{line}</p>
                       ) : (
                         line.startsWith("Answer:") ? (
-                          <p key={idx} className="text-sm italic text-gray-500">{line}</p>
+                          // <p key={idx} className="text-sm italic text-black">{line}</p>
+                          <p>1</p>
                         ) : (
-                          <button key={idx} className="block w-full text-left p-2 bg-white border border-gray-300 rounded-md hover:bg-gray-200">{line}</button>
+                          <button key={idx} className="text-black block w-full text-left p-2 bg-white border border-gray-300 rounded-md hover:bg-gray-200">{line}</button>
                         )
                       )
                     ))}
@@ -809,7 +810,7 @@ const handleChat = async () => {
                 userMessage.textContent = chatMessage;
 
                 const botMessage = document.createElement("div");
-                botMessage.className = "p-2 bg-gray-200 rounded mb-2";
+                botMessage.className = "p-2 bg-gray-500 rounded mb-2";
                 botMessage.textContent = chatResponse;
                 chatBox.appendChild(botMessage);
 
