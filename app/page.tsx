@@ -15,6 +15,7 @@ import { Appbar } from "./components/Appbar"
 import {  Table,  TableHeader,  TableBody,  TableColumn,  TableRow,  TableCell} from "@nextui-org/table";
 import { db } from './firebase';
 import { ref, get } from 'firebase/database';
+import SentimentAnalysisDashboard from "./components/Sentiment";
 
 const fetchData = async () => {
   const dbRef = ref(db, 'complaints');
@@ -235,6 +236,7 @@ export default function DashboardPage() {
   const [complaints, setComplaints] = useState([]);
   const[quizOutput, setQuizOutput] = useState(null);
   const[divLoad, setDivLoad] = useState(false);
+  
   let quizData = {};
   if(quizOutput){quizData = JSON.parse(quizOutput)
     console.log(quizData["word_of_the_day"]);
@@ -382,6 +384,7 @@ const handleChat = async () => {
           <TabsTrigger value="game">Games</TabsTrigger>
           <TabsTrigger value="damage">Damage Prone Routes</TabsTrigger>
           <TabsTrigger value="bot">Bot Logs</TabsTrigger>
+          <TabsTrigger value="sentiment">Sentiment Analysis</TabsTrigger>
         </TabsList>
         
 
@@ -772,6 +775,11 @@ const handleChat = async () => {
             </CardContent>
           </Card>
         </TabsContent>
+
+    <TabsContent value="sentiment">
+      <SentimentAnalysisDashboard></SentimentAnalysisDashboard>
+    </TabsContent>
+
       </Tabs>
       <button 
         className="fixed bottom-4 right-4 bg-blue-500 text-white p-3 rounded-full shadow-lg flex items-center " 

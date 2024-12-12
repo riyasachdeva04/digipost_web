@@ -1,0 +1,236 @@
+[
+  {
+    "complaint_id": "CPLT12345",
+    "customer_name": "Rajesh Kumar",
+    "complaint_type": "Delayed Delivery",
+    "description": "My parcel has not been delivered even after 10 days. The tracking system shows no update.",
+    "status": "Pending",
+    "date_of_complaint": "2024-12-10",
+    "location": "Mumbai, Maharashtra"
+  },
+  {
+    "complaint_id": "CPLT12346",
+    "customer_name": "Anjali Sharma",
+    "complaint_type": "Damaged Package",
+    "description": "The parcel I received was damaged. The product inside is broken.",
+    "status": "Resolved",
+    "date_of_complaint": "2024-12-08",
+    "location": "Delhi, Delhi"
+  },
+  {
+    "complaint_id": "CPLT12347",
+    "customer_name": "Suresh Reddy",
+    "complaint_type": "Incorrect Address",
+    "description": "The package was sent to the wrong address. I received it after 5 days of delay.",
+    "status": "In Progress",
+    "date_of_complaint": "2024-12-07",
+    "location": "Hyderabad, Telangana"
+  },
+  {
+    "complaint_id": "CPLT12348",
+    "customer_name": "Priya Singh",
+    "complaint_type": "Unresponsive Customer Service",
+    "description": "I have called the customer service multiple times, but they have not responded yet.",
+    "status": "Pending",
+    "date_of_complaint": "2024-12-09",
+    "location": "Kolkata, West Bengal"
+  },
+  {
+    "complaint_id": "CPLT12349",
+    "customer_name": "Mohammad Ali",
+    "complaint_type": "Parcel Lost",
+    "description": "My parcel has been marked as delivered, but I never received it.",
+    "status": "Resolved",
+    "date_of_complaint": "2024-12-06",
+    "location": "Bangalore, Karnataka"
+  },
+  {
+    "complaint_id": "CPLT12350",
+    "customer_name": "Sunita Devi",
+    "complaint_type": "Poor Packaging",
+    "description": "The packaging was not done properly, and the contents were exposed to moisture.",
+    "status": "In Progress",
+    "date_of_complaint": "2024-12-04",
+    "location": "Patna, Bihar"
+  },
+  {
+    "complaint_id": "CPLT12351",
+    "customer_name": "Vikram Singh",
+    "complaint_type": "Tracking Information Incorrect",
+    "description": "The tracking system shows incorrect status and location of my package.",
+    "status": "Pending",
+    "date_of_complaint": "2024-12-11",
+    "location": "Chennai, Tamil Nadu"
+  },
+  {
+    "complaint_id": "CPLT12352",
+    "customer_name": "Neha Gupta",
+    "complaint_type": "Overcharging for Postage",
+    "description": "I was charged more than what was quoted for postage. Please review the billing.",
+    "status": "Resolved",
+    "date_of_complaint": "2024-12-03",
+    "location": "Jaipur, Rajasthan"
+  },
+  {
+    "complaint_id": "CPLT12353",
+    "customer_name": "Ashok Mehta",
+    "complaint_type": "Inaccurate Delivery Timing",
+    "description": "The delivery was supposed to be on 5th December but was delayed for 3 days.",
+    "status": "Pending",
+    "date_of_complaint": "2024-12-05",
+    "location": "Lucknow, Uttar Pradesh"
+  },
+  {
+    "complaint_id": "CPLT12354",
+    "customer_name": "Ayesha Khan",
+    "complaint_type": "Unsecured Delivery",
+    "description": "The parcel was delivered without any signature or verification of identity.",
+    "status": "Resolved",
+    "date_of_complaint": "2024-12-02",
+    "location": "Ahmedabad, Gujarat"
+  },
+  {
+    "complaint_id": "CPLT12355",
+    "customer_name": "Manoj Verma",
+    "complaint_type": "Late Delivery",
+    "description": "The delivery took longer than expected. I was told it would arrive in 3 days, but it came after 7.",
+    "status": "Resolved",
+    "date_of_complaint": "2024-12-01",
+    "location": "Bhopal, Madhya Pradesh"
+  },
+  {
+    "complaint_id": "CPLT12356",
+    "customer_name": "Arvind Yadav",
+    "complaint_type": "Damaged Packaging",
+    "description": "The package was damaged during transit, resulting in damaged goods inside.",
+    "status": "Pending",
+    "date_of_complaint": "2024-12-05",
+    "location": "Noida, Uttar Pradesh"
+  },
+  {
+    "complaint_id": "CPLT12357",
+    "customer_name": "Rohit Patil",
+    "complaint_type": "Wrong Package Delivered",
+    "description": "I received a completely different package than what I ordered. Please look into it.",
+    "status": "In Progress",
+    "date_of_complaint": "2024-12-03",
+    "location": "Pune, Maharashtra"
+  },
+  {
+    "complaint_id": "CPLT12358",
+    "customer_name": "Nisha Sharma",
+    "complaint_type": "Customer Support Unavailability",
+    "description": "I tried reaching customer support multiple times but received no response.",
+    "status": "Resolved",
+    "date_of_complaint": "2024-11-30",
+    "location": "Kochi, Kerala"
+  },
+  {
+    "complaint_id": "CPLT12359",
+    "customer_name": "Vijay Kumar",
+    "complaint_type": "Parcel Not Delivered",
+    "description": "My parcel has not been delivered despite being marked as delivered by the system.",
+    "status": "Pending",
+    "date_of_complaint": "2024-12-02",
+    "location": "Indore, Madhya Pradesh"
+  },
+  {
+    "complaint_id": "CPLT12360",
+    "customer_name": "Shweta Soni",
+    "complaint_type": "Incorrect Tracking Information",
+    "description": "The tracking information is not matching the actual delivery status. Please update the details.",
+    "status": "In Progress",
+    "date_of_complaint": "2024-12-06",
+    "location": "Vadodara, Gujarat"
+  },
+  {
+    "complaint_id": "CPLT12361",
+    "customer_name": "Karan Joshi",
+    "complaint_type": "Overcharging",
+    "description": "The postage fees are higher than the stated charges. Kindly verify and refund.",
+    "status": "Pending",
+    "date_of_complaint": "2024-12-09",
+    "location": "Surat, Gujarat"
+  },
+  {
+    "complaint_id": "CPLT12362",
+    "customer_name": "Prashant Patel",
+    "complaint_type": "Damaged Contents",
+    "description": "The contents inside the package were damaged due to poor handling during delivery.",
+    "status": "Resolved",
+    "date_of_complaint": "2024-12-04",
+    "location": "Rajkot, Gujarat"
+  },
+  {
+    "complaint_id": "CPLT12363",
+    "customer_name": "Amit Kumar",
+    "complaint_type": "Package Delivered to Wrong Address",
+    "description": "The package was delivered to the wrong address and has not been recovered yet.",
+    "status": "Pending",
+    "date_of_complaint": "2024-12-11",
+    "location": "Nagpur, Maharashtra"
+  },
+  {
+    "complaint_id": "CPLT12364",
+    "customer_name": "Tina Mehta",
+    "complaint_type": "Late Pickup",
+    "description": "The pickup for my return parcel was delayed by two days, causing inconvenience.",
+    "status": "In Progress",
+    "date_of_complaint": "2024-12-05",
+    "location": "Delhi, Delhi"
+  },
+  {
+    "complaint_id": "CPLT12365",
+    "customer_name": "Shivani Patel",
+    "complaint_type": "Damaged Packaging",
+    "description": "The outer packaging was torn, resulting in a damaged product inside.",
+    "status": "Resolved",
+    "date_of_complaint": "2024-11-28",
+    "location": "Bhopal, Madhya Pradesh"
+  },
+  {
+    "complaint_id": "CPLT12366",
+    "customer_name": "Ravi Shankar",
+    "complaint_type": "Package Mismatch",
+    "description": "I received an item that was not what I ordered. I need a refund.",
+    "status": "Pending",
+    "date_of_complaint": "2024-12-07",
+    "location": "Chandigarh, Chandigarh"
+  },
+  {
+    "complaint_id": "CPLT12367",
+    "customer_name": "Maya Thakur",
+    "complaint_type": "No Response from Support",
+    "description": "I have sent multiple emails but have not received any reply from customer support.",
+    "status": "Resolved",
+    "date_of_complaint": "2024-12-03",
+    "location": "Gurgaon, Haryana"
+  },
+  {
+    "complaint_id": "CPLT12368",
+    "customer_name": "Suman Rani",
+    "complaint_type": "Unreliable Tracking",
+    "description": "The tracking system is showing inaccurate details, and I can't track my parcel.",
+    "status": "Pending",
+    "date_of_complaint": "2024-12-08",
+    "location": "Kanpur, Uttar Pradesh"
+  },
+  {
+    "complaint_id": "CPLT12369",
+    "customer_name": "Rina Soni",
+    "complaint_type": "Late Package Delivery",
+    "description": "My package was scheduled to arrive two days ago but is still delayed.",
+    "status": "In Progress",
+    "date_of_complaint": "2024-12-06",
+    "location": "Lucknow, Uttar Pradesh"
+  },
+  {
+    "complaint_id": "CPLT12370",
+    "customer_name": "Raghav Jha",
+    "complaint_type": "Received Wrong Item",
+    "description": "I received the wrong item and would like to request a replacement.",
+    "status": "Pending",
+    "date_of_complaint": "2024-12-07",
+    "location": "Patna, Bihar"
+  }
+]
