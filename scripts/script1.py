@@ -17,8 +17,8 @@ class SustainablePracticesGame:
         self.capture = cv.VideoCapture(0)
         
         # Load Haar Cascade Classifiers
-        self.face_cascade = cv.CascadeClassifier('/Users/riyasachdeva/Downloads/digipost_web/scripts/haarcascade_frontalface_default.xml')
-        self.eye_cascade = cv.CascadeClassifier("/Users/riyasachdeva/Downloads/digipost_web/scripts/haarcascade_eye.xml")
+        self.face_cascade = cv.CascadeClassifier('./haarcascade_frontalface_default.xml')
+        self.eye_cascade = cv.CascadeClassifier("./haarcascade_eye.xml")
         
         # Game state variables
         self.current_question_index = 0

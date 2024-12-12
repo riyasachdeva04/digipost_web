@@ -384,7 +384,7 @@ const handleChat = async () => {
           <TabsTrigger value="game">Games</TabsTrigger>
           <TabsTrigger value="damage">Damage Prone Routes</TabsTrigger>
           <TabsTrigger value="bot">Bot Logs</TabsTrigger>
-          <TabsTrigger value="sentiment">Sentiment Analysis</TabsTrigger>
+          <TabsTrigger value="BRSR Comparison">Comparison of Departments Sustainibility</TabsTrigger>
         </TabsList>
         
 
