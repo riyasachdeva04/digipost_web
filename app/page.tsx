@@ -237,6 +237,7 @@ export default function DashboardPage() {
   const[quizOutput, setQuizOutput] = useState(null);
   const[divLoad, setDivLoad] = useState(false);
   
+  
   let quizData = {};
   if(quizOutput){quizData = JSON.parse(quizOutput)
     console.log(quizData["word_of_the_day"]);
@@ -385,6 +386,7 @@ const handleChat = async () => {
           <TabsTrigger value="damage">Damage Prone Routes</TabsTrigger>
           <TabsTrigger value="bot">Bot Logs</TabsTrigger>
           <TabsTrigger value="BRSR Comparison">Comparison of Departments Sustainibility</TabsTrigger>
+          <TabsTrigger value="dash">Detailed Dashboard</TabsTrigger>
         </TabsList>
         
 
@@ -775,6 +777,7 @@ const handleChat = async () => {
             </CardContent>
           </Card>
         </TabsContent>
+
 
     <TabsContent value="sentiment">
       <SentimentAnalysisDashboard></SentimentAnalysisDashboard>

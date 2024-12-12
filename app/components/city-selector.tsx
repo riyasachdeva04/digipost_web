@@ -3,37 +3,21 @@
 import * as React from "react"
 import { Check, ChevronsUpDown } from 'lucide-react'
 
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/components/ui/command"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-const cities = [
-  { value: "mumbai", label: "Mumbai (Tier 1)" },
-  { value: "delhi", label: "Delhi (Tier 1)" },
-  { value: "bangalore", label: "Bangalore (Tier 1)" },
-  { value: "pune", label: "Pune (Tier 2)" },
-  { value: "ahmedabad", label: "Ahmedabad (Tier 2)" },
-  { value: "jaipur", label: "Jaipur (Tier 2)" },
-  { value: "lucknow", label: "Lucknow (Tier 2)" },
-  { value: "kochi", label: "Kochi (Tier 3)" },
-  { value: "indore", label: "Indore (Tier 3)" },
-  { value: "bhopal", label: "Bhopal (Tier 3)" },
-]
-
 export function CitySelector() {
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("")
+  
+
+  // Simplified cities list with just Delhi and Mumbai
+  const cities = [
+    { value: "delhi", label: "Delhi" },
+    { value: "mumbai", label: "Mumbai" },
+  ]
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -44,39 +28,29 @@ export function CitySelector() {
           aria-expanded={open}
           className="w-[200px] justify-between"
         >
-          {value
-            ? cities.find((city) => city.value === value)?.label
-            : "Select city..."}
+          {value ? cities.find((city) => city.value === value)?.label : "Select city..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
-        <Command>
-          <CommandInput placeholder="Search city..." />
-          <CommandEmpty>No city found.</CommandEmpty>
-          <CommandGroup>
-            {cities.map((city) => (
-              <CommandItem
-                key={city.value}
-                value={city.value}
-                onSelect={(currentValue) => {
-                  setValue(currentValue === value ? "" : currentValue)
-                  setOpen(false)
-                }}
-              >
-                <Check
-                  className={cn(
-                    "mr-2 h-4 w-4",
-                    value === city.value ? "opacity-100" : "opacity-0"
-                  )}
-                />
-                {city.label}
-              </CommandItem>
-            ))}
-          </CommandGroup>
-        </Command>
+        <div>
+          {cities.map((city) => (
+            <div
+              key={city.value}
+              className="cursor-pointer p-2 hover:bg-gray-100"
+              onClick={() => {
+                setValue(city.value === value ? "" : city.value)
+                setOpen(false)
+              }}
+            >
+              <Check
+                className={`mr-2 h-4 w-4 ${value === city.value ? "opacity-100" : "opacity-0"}`}
+              />
+              {city.label}
+            </div>
+          ))}
+        </div>
       </PopoverContent>
     </Popover>
   )
 }
-
